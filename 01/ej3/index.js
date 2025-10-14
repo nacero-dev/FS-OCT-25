@@ -6,3 +6,5 @@ let numero2= parseInt(prompt("Ingrese otro numero: "));
 let resultado = numero + numero2;
 
 console.log("El resultado de la suma es: "+ resultado);
+
+/*https://www.npmjs.com/package/prompt-sync*/
