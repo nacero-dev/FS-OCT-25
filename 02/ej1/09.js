@@ -6,6 +6,8 @@ function areaTriangulo(base, altura){;
 
 let base = parseFloat(prompt("Ingrese base: "));
 let altura = parseFloat(prompt("Ingrese altura: "));
+
+
 console.log (`el area es: ${areaTriangulo(base, altura)}`);
 
 
