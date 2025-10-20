@@ -1,0 +1,91 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  color: white;
+}
+
+/* Calculadora */
+.calculator {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 20rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+}
+
+.calculator:hover {
+  transform: scale(1.01);
+}
+
+/* Pantalla */
+.display {
+  background-color: #000;
+  color: #0f0;
+  font-size: 2rem;
+  text-align: right;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  min-height: 4rem;
+  overflow-x: auto;
+}
+
+/* Botonera */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+/* Botones */
+button {
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  padding: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background: #555;
+}
+
+button:active {
+  transform: scale(0.95);
+  background: #777;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .calculator {
+    padding: 15px;
+  }
+
+  .display {
+    font-size: 1.5rem;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 16px;
+  }
+}
