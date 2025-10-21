@@ -1,0 +1,32 @@
+.btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Efectos al pasar el ratón */
+.btn:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Accesibilidad: enfoque */
+.btn:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 3px;
+}
+
+/* Diseño responsive si lo usamos dentro de un contenedor grid o flex */
+@media (max-width: 600px) {
+  .btn {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+}

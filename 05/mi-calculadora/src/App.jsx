@@ -15,7 +15,8 @@ function App() {
   const handleEqual = () => {
     try {
       // Usa eval() solo para ejemplos simples. ¡No en apps reales sin sanitizar!
-      setInput(String(eval(input)));
+      setInput(String(eval(input).toFixed(12)));
+
     } catch (error) {
       setInput('Error');
     }
