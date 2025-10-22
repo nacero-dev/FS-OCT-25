@@ -14,7 +14,7 @@ const styles = {
   section: {
     margin: "2rem 0",
     padding: "1rem",
-    backgroundColor: "#c0cb40ff",
+    backgroundColor: "green",
     borderRadius: "8px",
   },
 };

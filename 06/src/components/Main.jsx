@@ -19,7 +19,8 @@ function Main() {
 
 const styles = {
   main: {
-    padding: "2rem",
+    backgroundColor: "cyan",
+    padding: "3rem",
   },
 };
 

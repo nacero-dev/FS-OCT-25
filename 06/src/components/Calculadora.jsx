@@ -62,7 +62,7 @@ function Calculadora() {
 
 const styles = {
   calc: {
-    backgroundColor: "#bfd530ff",
+    backgroundColor: "magenta",
     padding: "1rem",
     borderRadius: "8px",
   },

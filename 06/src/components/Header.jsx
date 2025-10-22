@@ -22,7 +22,7 @@ function Header({ siteName, links }) {
 
 const styles = {
   header: {
-    backgroundColor: "#282c34",
+    backgroundColor: "red",
     color: "#fff",
     padding: "1rem",
     display: "flex",

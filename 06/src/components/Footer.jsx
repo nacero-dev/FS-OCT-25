@@ -11,7 +11,7 @@ function Footer({ message }) {
 
 const styles = {
   footer: {
-    backgroundColor: "#1347b0ff",
+    backgroundColor: "purple",
     color: "#b6c5daff",
     textAlign: "center",
     padding: "1rem",
