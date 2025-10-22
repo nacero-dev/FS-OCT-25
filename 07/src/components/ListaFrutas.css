@@ -1,0 +1,38 @@
+.lista-frutas {
+  background-color: #fff8e7;
+  border: 1px solid #f3c623;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1rem auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.lista-frutas__titulo {
+  color: #f08a24;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.lista-frutas__total {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.lista-frutas__lista {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-frutas__item {
+  background-color: #ffe6a7;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 0.25rem 0;
+  transition: background-color 0.3s ease;
+}
+
+.lista-frutas__item:hover {
+  background-color: #ffd24c;
+}
