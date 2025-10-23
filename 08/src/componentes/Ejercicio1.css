@@ -1,0 +1,10 @@
+.ej1 ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ej1 li {
+  margin: 4px 0;
+  background-color: #eaeaea;
+  padding: 4px;
+}

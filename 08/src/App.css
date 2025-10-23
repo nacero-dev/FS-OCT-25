@@ -1,0 +1,19 @@
+.app-container {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+.ejercicio {
+  margin-top: 30px;
+}
+
+h1 {
+  color: darkblue;
+}
+
+h2 {
+  color: darkred;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}

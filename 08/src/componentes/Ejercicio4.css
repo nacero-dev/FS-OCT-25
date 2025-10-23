@@ -1,0 +1,18 @@
+.ej4 {
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 6px 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #ddd;
+}
