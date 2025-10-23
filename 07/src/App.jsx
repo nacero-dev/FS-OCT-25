@@ -1,5 +1,5 @@
 import React from "react";
-import ListaFrutas from "./components/ListaFrutas";
+import Antonio from "./components/ListaFrutas";
 import ListaTareas from "./components/ListaTareas";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Mis Listas</h1>
-      <ListaFrutas frutas={frutas} />
+      <Antonio fruits={frutas} />
       <ListaTareas tareas={tareas} />
     </div>
   );
