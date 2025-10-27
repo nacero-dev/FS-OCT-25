@@ -1,0 +1,9 @@
+.tarea {
+  font-size: 1em;
+  color: white;
+  margin: 0.5em 0;
+}
+
+.tareacompletada {
+  text-decoration: line-through;
+}
