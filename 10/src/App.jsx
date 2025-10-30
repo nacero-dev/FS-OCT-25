@@ -8,6 +8,7 @@ import Seconds from "./components/Seconds";
 import Randy from "./components/Randy";
 import RandyColor from "./components/RandyColor";
 import Submit from "./components/Submit";
+import Pause from "./components/Pause";
 
 
 
@@ -30,7 +31,8 @@ function App() {
       <Key/>
       <Randybox/>
       <Submit/>
-
+      <Pause/>
+      <Lista/>
     </>
   );
 }
