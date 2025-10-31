@@ -1,4 +1,21 @@
-import './index.css';
+import React from 'react';
+import Counter from './diap7.jsx'; 
+
+function App() {
+  return (
+    <div>
+      <h1>Mi Contador</h1>
+      <Counter /> {/* 👈 Aquí lo usas */}
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+/*import './index.css';
 import { useState } from 'react';
 
 function App() {
@@ -46,4 +63,6 @@ function App() {
   );
 }
 
-export default App;
+export default App; */
+
+
