@@ -1,0 +1,95 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fondo general del cuerpo (para que la calculadora quede centrada si se muestra sola) */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  color: white;
+}
+
+/* Contenedor principal de la calculadora */
+.calculator {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 20rem; /* limita su tamaño en pantallas grandes */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  transition: transform 0.3s ease;
+}
+
+/* Pequeña animación al pasar el mouse */
+.calculator:hover {
+  transform: scale(1.01);
+}
+
+/* Pantalla donde se muestran los números y resultados */
+.display {
+  background-color: #000;
+  color: #0f0;
+  font-size: 2rem;
+  text-align: right;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  min-height: 4rem;
+  overflow-x: auto; /* permite desplazarse horizontalmente si el número es largo */
+}
+
+/* Contenedor de los botones, usando grid para ordenarlos en 4 columnas */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas del mismo ancho */
+  gap: 12px; /* espacio entre botones */
+}
+
+/* Estilos base de los botones */
+button {
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  padding: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+/* Al pasar el ratón por encima */
+button:hover {
+  background: #555;
+}
+
+/* Efecto al hacer clic (ligero "hundimiento") */
+button:active {
+  transform: scale(0.95);
+  background: #777;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 480px) {
+  .calculator {
+    padding: 15px;
+  }
+
+  .display {
+    font-size: 1.5rem;
+    padding: 10px;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 16px;
+  }
+}

@@ -1,0 +1,20 @@
+/* src/componentes/Button.css */
+.btn {
+  background-color: #61dafb;
+  color: #000;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background-color: #4fc2e0;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}

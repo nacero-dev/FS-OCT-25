@@ -1,0 +1,19 @@
+/* src/componentes/Main.css */
+.main {
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.main__title {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.main__text {
+  color: #555;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
