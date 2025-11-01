@@ -1,0 +1,16 @@
+.articulo-card {
+  background-color: #f4f4f4;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.articulo-card__titulo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.articulo-card__contenido {
+  margin-top: 0.5rem;
+  color: #555;
+}
