@@ -20,3 +20,4 @@ const Listafruits = ({ fruits }) => {
 };
 
 export default Listafruits;
+

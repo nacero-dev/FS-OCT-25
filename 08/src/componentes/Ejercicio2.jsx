@@ -7,7 +7,14 @@ const Ejercicio2 = () => {
   return (
     <div className="ej2">
       <ul>
-        {frutas.map((fruta, index) => (
+        {frutas.map((fruta, index) => ( 
+          
+          /*siempre primero el elemento y despues el indice, no se puede invertir, 
+          la sintaxis oficial array.map((elemento, indice, arrayCompleto) => {}); 
+          Primer parámetro → el elemento actual del array
+          Segundo parámetro → el índice (la posición del elemento)
+          (Opcional) Tercer parámetro → el array completo (rara vez se usa)*/
+          
           <li key={index}>{fruta}</li>
         ))}
       </ul>
