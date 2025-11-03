@@ -1,5 +1,3 @@
-"use client";
-
 function Menu({ menuItems = [] }) {
   return (
     <nav className="bg-gray-800 text-white p-4 rounded-lg shadow-md">
