@@ -38,7 +38,7 @@ función actualizadora (también llamado functional updater)
 Representa el valor más reciente del estado en ese instante.
 
 count is {count}
-{count} dentro del botón muestra el valor actual del estado en la UI.
+{count} dentro del botón muestra el valor actual del estado con un texto anterior "count is" {count}
 
 
 */
