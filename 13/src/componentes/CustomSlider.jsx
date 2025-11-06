@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
 
+/*1 ver abajo*/
 const CustomSlider = ({ images = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Avanzar al siguiente slide
+  /*2 Avanzar al siguiente slide*/
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  // Retroceder al slide anterior
+
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
+
+  /* 2 */
   // Autoplay cada 3 segundos (opcional)
   useEffect(() => {
     if (images.length === 0) return;
@@ -81,3 +84,44 @@ const CustomSlider = ({ images = [] }) => {
 };
 
 export default CustomSlider;
+
+
+/* 
+1.-
+Supón que el estado vale 0 ahora mismo:
+const [currentIndex, setCurrentIndex] = useState(0);
+Cuando ejecutas:
+setCurrentIndex((prevIndex) => prevIndex + 1);
+React internamente hace:
+Simulación interna:
+const prevIndex = currentIndex; // o sea 0
+setCurrentIndex(prevIndex + 1); // ahora será 1
+Luego React actualiza el valor del estado y vuelve a renderizar el componente.
+
+const nextSlide = () => {
+  setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+};
+
+Entonces cuando haces clic en el botón “siguiente”:
+React llama a esa función.
+Le pasa el valor actual del estado (prevIndex).
+Calcula el nuevo valor → (prevIndex + 1) % images.length.
+Actualiza el estado (currentIndex) con ese resultado.
+React vuelve a renderizar la interfaz mostrando la nueva imagen.  
+
+| Expresión | Operación matemática  | Resultado | Significado                    |
+| --------- | --------------------- | --------- | ------------------------------ |
+| `0 % 3`   | 0 ÷ 3 = 0 resto **0** | 0         | estamos en la **1.ª imagen**   |
+| `1 % 3`   | 1 ÷ 3 = 0 resto **1** | 1         | estamos en la **2.ª imagen**   |
+| `2 % 3`   | 2 ÷ 3 = 0 resto **2** | 2         | estamos en la **3.ª imagen**   |
+| `3 % 3`   | 3 ÷ 3 = 1 resto **0** | 0         | volvemos a la **1.ª imagen** ✅ |
+
+1/3 = es mod 1 dado a que no se pudo dividir por nada el numero entonces queda el numero completo como resto "1"
+2/3 = es mod 2 dado a que no se pudo dividir por nada el numero entonces queda el numero completo como resto "2"
+
+
+2.-
+Sintaxis de set Interval
+setInterval(función, milisegundos);
+
+*/
