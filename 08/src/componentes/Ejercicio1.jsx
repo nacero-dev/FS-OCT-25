@@ -7,8 +7,8 @@ const Ejercicio1 = () => {
   return (
     <div className="ej1">
       <ul>
-        {numeros.map((num, index) => (
-          <li key={index}>Número: {num}</li>
+        {numeros.map((numero, index) => (
+          <li key={index}>Número: {numero}</li>
         ))}
       </ul>
     </div>
