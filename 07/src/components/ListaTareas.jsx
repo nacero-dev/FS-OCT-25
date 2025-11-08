@@ -13,7 +13,7 @@ const ListaTareas = ({ tasks }) => {
           {tasks.map((task, index) => (
             <li key={index} className="lista-tareas__item">
               {task.nombre} —{" "} 
-              {tarea.completada ? "✅ Completada" : "❌ Pendiente"}
+              {task.completada ? "✅ Completada" : "❌ Pendiente"}
             </li>
           ))}
         </ul>
@@ -26,6 +26,19 @@ export default ListaTareas;
 
 
 /*
+
+explicacion de sintaxis:
+ <li key={index} className="lista-tareas__item">
+              {task.nombre} —{" "} 
+              {task.completada ? "✅ Completada" : "❌ Pendiente"}
+            </li>
+
+
+task.nombre da el nombre de la tarea (eg. Estudiar React)
+{" "} - hace un espacio, es un truco
+{task.completada ? "✅ Completada" : "❌ Pendiente"} marca en la frase si esta completada o no la tarea
+es lo mismo que si se pusiera todo en linea: 
+{task.nombre} —{" "}{task.completada ? "✅ Completada" : "❌ Pendiente"}
 
 Ej 2-1
 
