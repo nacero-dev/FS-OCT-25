@@ -20,9 +20,7 @@ export default function BotonCambioColor() {
   );
 }
 
-
 /*
-
 
 🧱 1️⃣Cómo funciona la cascada en CSS
 
