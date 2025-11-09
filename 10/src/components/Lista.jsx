@@ -24,3 +24,6 @@ const List = () => {
 };
 
 export default List;
+
+
+/* se ve despues, no es lo mejor la estructura del array en useState*/

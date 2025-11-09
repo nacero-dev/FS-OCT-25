@@ -28,3 +28,6 @@ const Pause = () => {
 };
 
 export default Pause;
+
+
+/* se deja para despues no esta completo*/

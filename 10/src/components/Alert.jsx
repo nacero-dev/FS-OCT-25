@@ -15,4 +15,12 @@ const Alert = () => {
 
 export default Alert;
 
-/*comentarios 9:57*/
+/*
+
+El componente se renderiza.
+Aparece un botón.
+El usuario hace clic.
+React dispara showAlert.
+Aparece un alert() del navegador.
+
+*/
