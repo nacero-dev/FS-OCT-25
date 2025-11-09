@@ -8,6 +8,6 @@ function Boton({ texto, onClick }) {
     </button>
   );
 }
-//este onClick tiene implicita la funcion manejarClick que es la cuando recibe el onClick ejecuta y saca un alert
+//este onClick tiene implicita la funcion manejarClick (prop funcion callback) que es la cuando recibe el onClick ejecuta y saca un alert
 
 export default Boton;

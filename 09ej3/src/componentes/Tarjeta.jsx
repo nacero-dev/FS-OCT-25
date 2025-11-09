@@ -15,7 +15,6 @@ function Tarjeta({ children }) { ... }
 -children es una prop especial que React rellena automáticamente con todo 
 lo que coloques entre <Tarjeta> ... </Tarjeta> en App.jsx al usar el componente.
 
-
 return <div className="tarjeta">{children}</div>;
 Devuelve un <div> con clase tarjeta.
 Dentro coloca exactamente el contenido que llegó como children.
