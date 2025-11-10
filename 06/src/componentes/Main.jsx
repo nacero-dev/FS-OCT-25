@@ -3,6 +3,7 @@ import './Main.css';
 import Calculadora from './Calculadora';
 import Section from './Section';
 import Button from './Button'; // ← Importamos el componente Button
+import Card from './Card';
 
 
 
@@ -27,6 +28,15 @@ function Main() { /*Define el componente funcional Main, sin props porque en est
                 <Button text="Haz clic aquí" onClick={handleButtonClick} />
             </div>
 
+            <Card
+                title="Importancia de React"
+                content="React permite crear interfaces modulares, eficientes y fáciles de mantener."
+            />
+
+            <Card
+                title="Componentes reutilizables"
+                content="Los componentes permiten componer la interfaz como bloques independientes."
+            />
 
             <Section
                 title="Sobre nosotros"

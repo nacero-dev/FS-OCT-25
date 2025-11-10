@@ -36,3 +36,5 @@ const RandyBox = () => {
 };
 
 export default RandyBox;
+
+/* se deja pendiente de profundizar, si hay tiempo se verá*/

@@ -25,6 +25,8 @@ const List = () => {
 export default List
 
 
+
+
 /*
 
 const [items, setItems] = useState([]);
@@ -90,6 +92,64 @@ setItems(["Item 1", "Item 2"])
 setItems(["Item 1", "Item 2", "Item 3"])
 
 
+Segunda vuelta de repaso:
+
+Declaración del estado
+const [items, setItems] = useState([]);
+items → es un array que empieza vacío ([]).
+setItems → cambia ese array.
+Cada vez que cambies el array con setItems(...), React volverá a renderizar la lista.
+
+Botón que agrega elementos
+<button onClick={() => setItems([...items, `Item ${items.length + 1}`])}>
+  Agregar item
+</button>
+
+✅ A) ¿Qué hace onClick?
+
+Ejecuta la función cuando se hace clic.
+
+✅ B) ¿Qué es [...items, nuevoItem]?
+
+Es spread operator (...).
+
+Sirve para copiar el array actual.
+
+Nunca debemos modificar el estado directamente (no usar .push()).
+
+Lo correcto es crear un array nuevo y asignarlo.
+
+Ejemplo:
+
+items = []            → clic
+items = ["Item 1"]    → clic
+items = ["Item 1", "Item 2"]
+
+
+Esto lo logra:
+
+[...items, nuevoItem]
+
+✅ C) ¿Qué significa `Item ${items.length + 1}`?
+
+Es un template string.
+Toma el tamaño actual del array y suma 1.
+
+Si hay 0 elementos → “Item 1”
+Si hay 1 elemento → “Item 2”
+Si hay 2 elementos → “Item 3”
+
+Así generas textos automáticos.
+
+✅ D) ¿Qué hace setItems(...)?
+
+Actualiza el estado con la nueva lista.
+
+Al cambiar el estado:
+
+React vuelve a renderizar,
+
+y se vuelve a dibujar la lista completa.
 
 
 */

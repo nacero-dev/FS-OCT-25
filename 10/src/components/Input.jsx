@@ -22,6 +22,9 @@ const Input = () => {
 
 export default Input
 
+
+
+
 /*
 
 Paso a paso: cómo funciona

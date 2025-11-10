@@ -1,21 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Antonio from "./components/ListaFrutas";
 import ListaTareas from "./components/ListaTareas";
 import ArticulosDestacados from "./components/ArticulosDestacados";
-
+import AlumnosAprobados from "./components/AlumnosAprobados";
+import ListaUsuarios from "./components/ListaUsuarios";
 
 function App() {
 
-
+  /*ver abajo 1.*/
   const frutas = ["Manzana", "Plátano", "Fresa", "Uva"];
 
-
+  /*ver abajo 2.*/
   const tareas = [
     { nombre: "Estudiar React", completada: true },
     { nombre: "Hacer la compra", completada: true },
     { nombre: "Practicar surf", completada: true },
   ];
-
 
   const articulos = [
     {
@@ -35,12 +35,49 @@ function App() {
     },
   ];
 
+  const calificaciones = [
+    { id: 1, nombre: "Ana", nota: 8 },
+    { id: 2, nombre: "Luis", nota: 4 },
+    { id: 3, nombre: "Carmen", nota: 6 },
+  ];
+
+  const usuarios = [
+    { id: 101, nombre: "Carlos" },
+    { id: 102, nombre: "María" },
+    { id: 103, nombre: "Sofía" },
+  ];
+
+  /*ver abajo 3.*/
+  const [contadorDestacados] = useState(
+    articulos.filter((art) => art.destacado).length
+  );
+
   return (
+
     <div>
+
       <h1 style={{ textAlign: "center" }}>Mis Listas</h1>
+
+      <h2 style={{ textAlign: "center" }}>
+        Artículos destacados: {contadorDestacados}
+      </h2>
+
+      /*1.1*/
       <Antonio fruits={frutas} />
+
+      /*1.2*/
+
       <ListaTareas tasks={tareas} />
+
+      /*2.2 (2.3 viene desde ArticulosDestacados.jsx)*/
       <ArticulosDestacados articles={articulos} />
+
+      /*3.2*/
+      <AlumnosAprobados grades={calificaciones} />
+
+      /*3.3*/
+      <ListaUsuarios users={usuarios} />
+
     </div>
   );
 }
@@ -50,7 +87,7 @@ export default App;
 
 /* 
 
-Explicación Frutas:
+1. Explicación Frutas:
 
 <Antonio fruits={frutas} />
 
@@ -101,7 +138,7 @@ const Listafruits = ({ lista }) => (
   <p>Total de frutas: {lista.length}</p>
 );
 
-🔹 Lo importante es que el nombre del prop (izquierda del =)
+🔹 Lo importante es que el nombre del prop en App (izquierda del =)
 coincida con el nombre usado en el hijo (entre llaves).
 
 
@@ -137,7 +174,28 @@ const Listafruits = ({ fruits }) => {
 
 
 
-Explicación Tareas: 
+Qué es index en un .map() de React
+
+Cuando usas .map() en un array:
+array.map((item, index) => { ... })
+
+
+Recibes dos valores automáticamente:
+item → el elemento actual del array
+index → la posición de ese elemento dentro del array
+
+const frutas = ["Manzana", "Pera", "Uva"];
+
+
+| Iteración | fruta     | index |
+| --------- | --------- | ----- |
+| 1         | "Manzana" | 0     |
+| 2         | "Pera"    | 1     |
+| 3         | "Uva"     | 2     |
+
+
+
+2. Explicación Tareas: 
 
 🧩 1. Qué es realmente tareas
 
@@ -164,5 +222,31 @@ devuelve el número total de tareas, sin importar si están completadas o no.
 tareas.length === 3
 
 porque hay tres objetos dentro del array.
+
+
+3. Explicacion contador articulos destacados:
+
+  const [contadorDestacados, setContadorDestacados] = useState(
+    articulos.filter((art) => art.destacado).length
+  );
+
+  const [contadorDestacados, setContadorDestacados] = useState(valorInicial);
+
+  destacado: true
+articulos.filter((art) => art.destacado).length
+¿Qué hace esto?
+
+.filter((art) => art.destacado)
+→ Devuelve SOLO los artículos destacados
+
+.length
+→ Cuenta cuántos son
+
+Cuando escribes:
+articulos.filter((art) => art.destacado)
+o la versión más explícita:
+articulos.filter((art) => art.destacado === true)
+solo se consideran los artículos cuyo valor destacado es true.
+
 
 */

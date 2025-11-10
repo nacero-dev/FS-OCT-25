@@ -22,6 +22,9 @@ const Toggle = () => {
 
 export default Toggle
 
+
+
+
 /* 
 
 🧠 Paso a paso: qué está pasando
@@ -52,6 +55,38 @@ Si estaba false, pasa a true.
 
 Si estaba true, pasa a false.
 
+Render inicial:
+
+isToggled = false
+
+React muestra → botón con texto Off.
+
+Clic 1:
+setIsToggled(!false) → setIsToggled(true)
+Nuevo estado: isToggled = true
+React re-renderiza → se muestra On.
+
+Clic 2:
+setIsToggled(!true) → setIsToggled(false)
+Nuevo estado: isToggled = false
+React re-renderiza → se muestra Off.
+
+Clic 3:
+vuelve a cambiar a On
+y así sucesivamente.
+
+8) Variantes útiles (si quisieras experimentar)
+Versión con dos botones
+<button onClick={() => setIsToggled(true)}>Encender</button>
+<button onClick={() => setIsToggled(false)}>Apagar</button>
+
+Con estilos dinámicos
+style={{
+  backgroundColor: isToggled ? "green" : "gray"
+}}
+
+Con texto más descriptivo
+{isToggled ? "Encendido" : "Apagado"}
 
 
 */

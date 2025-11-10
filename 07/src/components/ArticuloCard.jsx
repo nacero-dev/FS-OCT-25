@@ -1,6 +1,8 @@
 import React from "react";
 import "./ArticuloCard.css";
 
+
+/*viene de articulos destacados*/
 const ArticuloCard = ({ titulo, contenido }) => {
   return (
     <div className="articulo-card">

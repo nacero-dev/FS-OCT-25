@@ -11,6 +11,9 @@ import Submit from "./components/Submit";
 import Pause from "./components/Pause";
 import Key from "./components/Key";
 import Lista from "./components/Lista";
+import RandyBox from "./components/RandyBox";
+import RandyBox from "./components/RandyBox";
+import Alert from "./components/Alert";
 
 
 
@@ -31,8 +34,8 @@ function App() {
       <h2>Nivel 3</h2>
       <Submit/>
       <Key/>
-      <Randy/>
-      <Submit/>
+      <Alert/>
+      <RandyBox/>
       <Pause/>
       <Lista/>
     </>

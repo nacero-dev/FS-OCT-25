@@ -28,7 +28,7 @@ const RandyColor = () => {
           width: "100px",
           height: "100px",
           backgroundColor: color,
-          border: "1px solid #000",
+          border: "1px solid #000000ff",
         }}
       ></div>
       <p>Color actual: {color}</p>
@@ -37,3 +37,5 @@ const RandyColor = () => {
 };
 
 export default RandyColor;
+
+
