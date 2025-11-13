@@ -3,6 +3,8 @@ import App from "./App";
 import Home from "./componentes/home";
 import About from "./componentes/about";
 import User from "./componentes/user";
+import Post, { postLoader } from "./componentes/post";
+import ErrorPage from "./componentes/error-page";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +13,13 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/about", element: <About /> },
-    { path: "/user/:id", element: <User /> }, /*aqui es donde el id se vuelve relevante, en app.jsx se acota muestra a "user/1" y en user se muestra {id } */
+      { path: "/user/:id", element: <User /> },
+      {
+        path: "/post/:id",
+        element: <Post />,
+        loader: postLoader,
+        errorElement: <ErrorPage />,
+      },
     ],
   },
 ]);

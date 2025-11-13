@@ -1,5 +1,7 @@
 import { Outlet, NavLink } from "react-router-dom";
 
+/*!!! FALTA METER POST Y ERROR !!!*/
+
 export default function App() {
   return (
     <div>
@@ -27,6 +29,18 @@ y devolver una clase cuando isActive sea true.
 Contiene un menú con <NavLink> (permite cambiar de ruta sin recargar la página).
 el layout principal (App) se muestra y deja un hueco para las rutas hijas (Home, About, User).
 
+
+El flujo completo queda así:
+
+index.html
+   ↓
+main.jsx  →  ReactDOM.render(<MyRouter />)
+   ↓
+my-router.jsx  →  <RouterProvider router={router}>
+   ↓
+App.jsx (layout principal con menú y <Outlet />)
+   ↓
+Ruta hija (Home / About / User según la URL)
 
 */
 
