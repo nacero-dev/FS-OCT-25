@@ -48,8 +48,8 @@ export default function User() {
 
 useParams() lee los parámetros dinámicos de la ruta actual.
 
-En tu router definiste /user/:id. El :id es un “placeholder”.
+En router se define /user/:id. El :id es un “placeholder”.
 
-Si visitas /user/1, useParams() devuelve { id: "1" } y lo muestras en pantalla.
+Si se visita /user/1, useParams() devuelve { id: "1" } y lo muestras en pantalla.
 
 */

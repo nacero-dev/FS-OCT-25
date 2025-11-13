@@ -79,11 +79,4 @@ User → Usa useParams() para leer el parámetro dinámico id de la URL.
 El componente apropiado aparece dentro del layout de App.
 
 
-
-
-
-
-
-
-
 */
