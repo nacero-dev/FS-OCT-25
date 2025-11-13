@@ -11,7 +11,22 @@ export default function App() {
         </ul>
       </nav>
       <hr />
-      <Outlet />
+      <Outlet /> 
     </div>
   );
 }
+
+/* 
+
+Como App es el element del path raíz ("/"), siempre se renderiza al inicio.
+Outlet renderiza las paginas hijas en una seccion abajo
+Detalles útiles de NavLink:
+Puede aplicar estilos activos automáticamente. 
+Si algún día quieres resaltar la ruta activa, puedes usar su prop className como función
+y devolver una clase cuando isActive sea true.
+Contiene un menú con <NavLink> (permite cambiar de ruta sin recargar la página).
+el layout principal (App) se muestra y deja un hueco para las rutas hijas (Home, About, User).
+
+
+*/
+

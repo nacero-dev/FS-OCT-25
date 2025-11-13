@@ -15,6 +15,8 @@ const WeatherApp = () => {
       return;
     }
 
+    // validacion temprana, si city está vacío no hace la petición, limpia datos previos y muestra error de validacion
+
     try {
       setError("");
       setLoading(true);
@@ -23,15 +25,46 @@ const WeatherApp = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=es`
       );
 
+
+      /* 
+        fetch(...): solicita a OpenWeatherMap el clima actual:
+         q=${city}: la ciudad a consultar.
+         appid=${API_KEY}: tu clave.     
+         units=metric: devuelve temperatura en °C.
+         lang=es: devuelve la descripción del clima en español.  
+      */
+
+
       if (!response.ok) {
         throw new Error("Ciudad no encontrada");
       }
 
+      /*
+      response.ok: si la respuesta HTTP no es 2xx, lanza un error
+      que captura el catch. OpenWeatherMap, por ejemplo, responde
+      404 para ciudad inexistente.
+      */
+
       const data = await response.json();
+
+      /*
+      await response.json(): convierte el cuerpo a objeto JS.
+      */
+
       setWeather(data);
+
+      /*
+      guarda los datos en estado para que React vuelva a renderizar mostrando la información.
+      */
+
     } catch (err) {
       setError(err.message);
       setWeather(null);
+
+      /*
+       guarda los datos en estado para que React vuelva a renderizar mostrando la información.
+      */
+
     } finally {
       setLoading(false);
     }
@@ -45,8 +78,8 @@ const WeatherApp = () => {
   }, [city]);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchWeather();
+    e.preventDefault(); /*e.preventDefault(): evita el recargo de página típico del HTML al enviar formularios.*/
+    fetchWeather(); /*Llama a fetchWeather() para ejecutar la consulta con la ciudad actual.*/
   };
 
   const handleManualRefresh = () => {
@@ -62,12 +95,23 @@ const WeatherApp = () => {
           type="text"
           placeholder="Ejemplo: Madrid"
           value={city}
-          onChange={(e) => setCity(e.target.value)}
+          onChange={(e) => setCity(e.target.value)} /*Cuando el usuario escribe en el input, se actualiza aqui. Este estado sirve para decirle a la API qué ciudad debe buscarse.*/
           className="weather-app__input"
         />
         <button type="submit" className="weather-app__button">
           Buscar
         </button>
+
+        /*
+        Al pulsar “Buscar” o Enter, se dispara onSubmit del form,
+        se ejecuta handleSubmit y luego fetchWeather.
+        */
+
+        /*
+        value={city} y onChange: input controlado. El estado city es la fuente de la verdad. 
+        Cada pulsación actualiza el estado con setCity.
+        */
+
         <button
           type="button"
           className="weather-app__button weather-app__button--refresh"
@@ -79,9 +123,10 @@ const WeatherApp = () => {
 
       {loading && <p className="weather-app__loading">Cargando datos...</p>}
       {error && <p className="weather-app__error">{error}</p>}
+      /*Al pulsar “Buscar” o Enter, se dispara onSubmit del form, se ejecuta handleSubmit y luego fetchWeather.*/
 
       {weather && !loading && !error && (
-        <div className="weather-app__info">
+        <div className="weather-app__info"> /* ver abajo 1. */
           <h2>
             {weather.name}, {weather.sys.country}
           </h2>
@@ -95,3 +140,57 @@ const WeatherApp = () => {
 };
 
 export default WeatherApp;
+
+
+/*
+
+Flujo completo resumido
+Usuario escribe una ciudad → setCity.
+Envía el formulario → handleSubmit evita recarga y llama fetchWeather.
+fetchWeather valida city. Si está vacío, establece error y termina.
+Si hay ciudad, hace fetch a la URL con la API key.
+Si la respuesta es 2xx:
+json(), setWeather(data), setError("").
+Si la respuesta no es 2xx o hay fallo de red:
+setError("..."), setWeather(null).
+React re-renderiza mostrando error o los datos.
+
+1.
+En JavaScript, cada valor se evalúa como verdadero (truthy) o falso (falsy).
+La condición simple:
+weather
+
+no pregunta “¿es igual a algo?”.
+No está comparando.
+Solo evalúa si weather es un valor considerado verdadero o falso.
+
+¿Qué valores puede tener weather?
+Antes de obtener datos:
+weather = null
+null es un valor falso.
+
+React interpreta:
+false
+Entonces NO se muestra nada.
+
+Después de obtener datos:
+weather = { ...datos del clima... }
+Un objeto es verdadero.
+React interpreta:
+true
+Entonces la parte derecha de la expresión se ejecuta y React sí muestra el contenido.
+
+
+Por qué funciona
+En JavaScript:
+null → falsy
+{} cualquier objeto → truthy
+React usa esa regla para decidir si debe renderizar.
+Por eso:
+weather && <div>contenido</div>
+funciona así:
+Si weather es null → no mostrar <div>.
+Si weather es un objeto → sí mostrar <div>.
+
+
+*/
