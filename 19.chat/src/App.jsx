@@ -1,6 +1,5 @@
 import { Outlet, NavLink } from "react-router-dom";
 
-/*!!! FALTA METER POST Y ERROR !!!*/
 
 export default function App() {
   return (

@@ -4,7 +4,7 @@ import Home from "./componentes/home";
 import About from "./componentes/about";
 import User from "./componentes/user";
 import Post, { postLoader } from "./componentes/post";
-import ErrorPage from "./componentes/error-page";
+import ErrorPage from "./componentes/error";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/about", element: <About /> },
-      { path: "/user/:id", element: <User /> },
+      { path: "/user/:id", element: <User /> }, /* los ":" significa que la ruta es opcional */
       {
         path: "/post/:id",
         element: <Post />,
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-export default function MyRouter() {
+export default function AppRouter() {
   return <RouterProvider router={router} />;
 }
 
@@ -85,6 +85,23 @@ About → <h2>About Page</h2>
 
 User → Usa useParams() para leer el parámetro dinámico id de la URL.
 El componente apropiado aparece dentro del layout de App.
+
+¿Por qué existe errorElement?
+Porque React Router quiere separar:
+  Las pantallas “normales”
+  De las pantallas de error cuando algo falla
+Aqui:
+{
+  path: "/post/:id",
+  element: <Post />,
+  loader: postLoader,
+  errorElement: <ErrorPage />,
+}
+dice:
+“Si la ruta carga bien → renderiza <Post />
+Si falla → renderiza <ErrorPage /> y pásale el error que ocurrió.”
+el componente Post se mantiene limpio y no necesita try/catch.
+
 
 
 */
