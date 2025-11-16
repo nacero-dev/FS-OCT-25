@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+/* Contenedor de las tarjetas */
+
+.contenedor-vista {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.3rem;
+}
+
+/* Titulo del renderizado*/
+
+.contenedor-vista h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Galería base de un movil*/
+
+.galeria {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+  align-items: stretch; 
+}
+
+/* Configuracion de tarjetas */
+
+.tarjeta {
+  background: white;
+  padding: 20px;
+  border-radius: 1rem;
+  text-align: center;
+  color: black;
+}
+
+.tarjeta img {
+  width: 20vw;
+  height: auto;
+}
+
+.tarjeta p {
+  margin: 1rem;
+  font-size: 2rem;
+}
+
+/* Configuracion responsive */
+
+/* 768px a 1279px (3 columnas) */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .galeria {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 1280px o más (4 columnas) */
+@media (min-width: 1280px) {
+  .galeria {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
