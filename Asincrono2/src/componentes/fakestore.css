@@ -1,0 +1,28 @@
+.api-box {
+  border: 1px solid white;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .5rem;
+}
+
+.item-card {
+  padding: .5rem;
+  background: white;
+  color: black;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; 
+  }
+
+  .item-card {
+    font-size: 1rem;
+  }
+}

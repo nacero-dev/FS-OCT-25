@@ -1,0 +1,56 @@
+/* Títulos */
+h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+}
+
+h2 {
+  margin-top: 1.5rem;
+  font-size: 1.3rem;
+  padding-bottom: 0.25rem;
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+
+}
+
+/* Listas */
+ul {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+  
+}
+
+li {
+  margin-bottom: 0.3rem;
+}
+
+/* Contenedor general de la página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: gray;
+  padding: 5rem;
+  color: #333;
+}
+
+/* Separación básica entre secciones de API */
+.api-box {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  body {
+    padding: 0.5rem;
+  }
+}

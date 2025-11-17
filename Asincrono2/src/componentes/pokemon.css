@@ -1,0 +1,25 @@
+.api-box {
+  border: 1px solid white;
+  padding: 1rem;
+  margin-top: 1rem;
+   
+}
+
+.item-card {
+  padding: .5rem;
+  margin-bottom: .5rem;
+  background: white;
+  color: black;
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  .item-card {
+    font-size: 1rem;
+  }
+
+  .item-card img {
+    width: 4rem; 
+  }
+}
