@@ -309,11 +309,11 @@ loader: async ({ params }) => {
 errorElement: <Error />
 
 ¿Qué pasa aquí?
-👉 Se hace la petición
-👉 Pero no se verifica si res.ok es false
-👉 No se detectan errores HTTP
-👉 No realiza throw
-👉 No se entra a errorElement
+Se hace la petición
+Pero no se verifica si res.ok es false
+No se detectan errores HTTP
+No realiza throw
+No se entra a errorElement
 
 ⚠ Entonces:
 
