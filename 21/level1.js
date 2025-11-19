@@ -14,7 +14,7 @@ fs.readFile('hello.txt', 'utf8', (err, data) => {
     console.log(data);
 });
 
-// Level 1 - 3
+// Level 1 - 3 !!!comentado para que no lo borre, lo necesita level 3, descomentar para ejecutar delete
 // Elimina el archivo 'hello.txt'
 // fs.unlink('hello.txt', (err) => {
 //     if (err) throw err;
@@ -23,7 +23,8 @@ fs.readFile('hello.txt', 'utf8', (err, data) => {
 
 /*| Acción                                          | Significado                                              |
 | ----------------------------------------------- | -------------------------------------------------------- |
-| Instalar nodemon                                | `npm install nodemon`                                    |
+| Iniciar                                           `npm init -y`
+  Instalar nodemon                                | `npm install nodemon`                                    |
 | Instalar nodemon como dependencia de desarrollo | `npm install -D nodemon`                                 |
 | Ejecutarlo                                      | `nodemon index.js` o `npm run dev`                       |
 | Para qué sirve                                  | Reinicia tu servidor automáticamente al detectar cambios |

@@ -4,6 +4,7 @@ const app = express(); /*2*/
 const port = 3000; 
 
 app.use(express.json());
+/*se intercambia por app.use(express.text());*/
 
 
 // Ejemplo de clase: /*1*/
@@ -16,6 +17,7 @@ app.use(express.json());
 
 
 /*1 mejora: */
+/*CAMBIAR PARA EL GET: app.use(express.json());*/
 app.get('/', (req, res) => {
     fs.readFile('hello.txt', 'utf8', (err, data) => {
         if (err) throw err;
@@ -32,9 +34,11 @@ app.get('/', (req, res) => {
 });
 
 
+// ver video 21:55 como se configura en postman json y uso de { " ": " ", " ":" "}
+// hay pequeños errores pero despues lo explica en 22:00 
 
 app.post('/', (req, res) => {
-    fs.writeFile('hello.txt', JSON.stringify(req.body), (err) => {
+    fs.writeFile('hello.txt', JSON.stringify(req.body), (err) => { /* stringify: {"mensaje":"Antonio!!","autor":"Ernsesto"}*/
         if (err) throw err;
         res.status(201).send('File has been created');
     });
