@@ -1,5 +1,19 @@
 {
   "devDependencies": {
     "nodemon": "^3.1.11"
+  },
+  "name": "21",
+  "version": "1.0.0",
+  "main": "level1.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
   }
 }
