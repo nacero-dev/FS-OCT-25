@@ -5,7 +5,8 @@ const cors = require('cors');
 
 // Veriables de entorno
 const PORT = 3000;
-const MONGODB_URI= 'mongodb://localhost:27017/dia25';
+// const MONGODB_URI= 'mongodb://localhost:27017/dia25'
+const MONGODB_URI= 'mongodb+srv://nicolasacero2023:Odesa1234@cluster0.jecail7.mongodb.net/dia25?appName=Cluster0'; //aqui se pone la URL del nivel 2
 
 // Routers
 const indexRouter = require('./routers/indexRouters');
@@ -19,11 +20,7 @@ const internalServerError = require('./middlewares/500');
 const auth = require('./middlewares/auth');
 
 // Conexion consola a la base de datos
-mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-
-})
+mongoose.connect(MONGODB_URI)
 
 .then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('Could not connect to MongoDB', err));
