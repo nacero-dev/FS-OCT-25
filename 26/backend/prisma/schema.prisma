@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+}
+
+model Person {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  surname   String
+  birthdate DateTime
+  isTeacher Boolean  @default(false)
+
+  // Relación 1:N (el profesor puede enseñar varias clases)
+  taughtClassroomsIds String[] @db.ObjectId
+
+  // Relación N:M (el estudiante puede estar en varias clases)
+  classroomIds String[] @db.ObjectId
+}
+
+model Classroom {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+
+  // Profesor asignado (1 profesor por clase)
+  teacherId String   @db.ObjectId
+
+  // Lista de estudiantes (N:M)
+  studentIds String[] @db.ObjectId
+}
+
