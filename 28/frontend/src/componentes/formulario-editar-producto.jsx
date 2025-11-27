@@ -1,0 +1,56 @@
+import { useState } from 'react';
+
+function FormularioEditarProducto({ producto, onActualizar, onCancelar }) {
+  const [form, setForm] = useState({
+    nombre: producto.nombre,
+    descripcion: producto.descripcion,
+    precio: producto.precio,
+    stock: producto.stock,
+    categoria: producto.categoria
+  });
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!form.nombre.trim()) return setError('El nombre es obligatorio');
+    if (!form.descripcion.trim()) return setError('La descripción es obligatoria');
+    if (!form.categoria.trim()) return setError('La categoría es obligatoria');
+
+    const precio = Number(form.precio);
+    const stock = Number(form.stock);
+    if (isNaN(precio) || precio < 0) return setError('Precio inválido');
+    if (!Number.isInteger(stock) || stock < 0) return setError('Stock inválido');
+
+    onActualizar(producto._id, {
+      ...form,
+      precio,
+      stock
+    });
+  };
+
+  return (
+    <section>
+      <h2>Editar producto</h2>
+      {error && <p className="error">{error}</p>}
+
+      <form className="formulario" onSubmit={handleSubmit}>
+        <input name="nombre" placeholder="Nombre" value={form.nombre} onChange={handleChange} />
+        <input name="descripcion" placeholder="Descripción" value={form.descripcion} onChange={handleChange} />
+        <input name="precio" type="number" placeholder="Precio" value={form.precio} onChange={handleChange} />
+        <input name="stock" type="number" placeholder="Stock" value={form.stock} onChange={handleChange} />
+        <input name="categoria" placeholder="Categoría" value={form.categoria} onChange={handleChange} />
+        <div className="acciones">
+          <button type="submit">Guardar cambios</button>
+          <button type="button" onClick={onCancelar}>Cancelar</button>
+        </div>
+      </form>
+    </section>
+  );
+}
+
+export default FormularioEditarProducto;
