@@ -8,6 +8,15 @@ const writeCSV = (path, data) => {
     fs.writeFileSync("data/" + path + ".csv", csvContent, 'utf8');
 };
 
+/*
+
+writeCSV(path, data):
+toma las claves del primer objeto como cabeceras
+genera filas con .join(',')
+escribe el archivo completo de nuevo.
+
+*/
+
 const readCSV = (path) => {
     const data = fs.readFileSync("data/" + path + ".csv", 'utf8');
     const [headers, ...rows] = data.split('\n').map(row => row.split(','));
@@ -19,5 +28,15 @@ const readCSV = (path) => {
         }, {})
     );
 };
+
+/*
+
+readCSV(path):
+abre "data/" + path + ".csv"
+separa cabeceras y filas
+devuelve un array de objetos { columna1: valor1, columna2: valor2, ... }
+
+*/
+
 
 module.exports = { writeCSV, readCSV };

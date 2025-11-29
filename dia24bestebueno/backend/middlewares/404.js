@@ -4,3 +4,9 @@ const notFound = (req, res, next) => {
 };
 
 module.exports = notFound;
+
+/*
+
+404.js → se ejecuta al final, si ninguna ruta respondió; devuelve JSON con error “Not Found”.
+
+*/

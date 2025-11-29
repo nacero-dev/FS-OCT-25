@@ -6,3 +6,7 @@ const auth = (req, res, next) => {
 };
 
 module.exports = auth;
+
+/*
+auth.js → revisa req.headers.authorization y compara con un token fijo; si no coincide, responde 403/401.
+*/

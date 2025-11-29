@@ -58,3 +58,44 @@ const PersonCreate = () => {
 }
 
 export default PersonCreate;
+
+/*
+
+Qué hace:
+Funciona tanto para crear como para editar una persona, dependiendo de si la URL tiene id o no.
+
+👉 Cómo funciona:
+
+Usa useParams() para saber si hay un id:
+
+si no hay id → modo “crear” (POST)
+
+si hay id → modo “editar” (PUT)
+
+Usa useRef() para acceder directamente a los campos del formulario.
+
+Usa useNavigate() para redirigir de vuelta a la página principal (/) tras guardar.
+
+👉 Flujo principal:
+
+a) Si hay id (editar):
+
+Al montar, hace fetch('.../persons/:id') y rellena los campos del formulario con los datos existentes.
+
+b) Al enviar (handleSubmit):
+
+Recolecta todos los valores del formulario.
+
+Decide:
+
+let url = id ? `.../persons/${id}` : '.../persons';
+let method = id ? 'PUT' : 'POST';
+
+
+Envía con fetch(url, { method, headers, body }).
+
+Al finalizar, redirige a la página principal (navigate('/')).
+
+👉 Conclusión:
+PersonCreate centraliza la lógica de crear y actualizar usando los endpoints POST /persons y PUT /persons/:id.
+*/

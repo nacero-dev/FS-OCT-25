@@ -54,3 +54,10 @@ const deleteClassroom = (id) => {
 }
 
 module.exports = { listClassrooms, getClassroom, createClassroom, updateClassroom, deleteClassroom };
+
+/*
+ver personsModel.csv
+classroomModel es parecido, con la particularidad de que students se guarda como texto "id1;id2;id3" en el CSV,
+pero el modelo lo expone como array ["id1","id2","id3"] al resto de la aplicación.
+
+*/

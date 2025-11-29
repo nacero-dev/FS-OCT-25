@@ -6,3 +6,7 @@ const internalServerError = (err, req, res, next) => {  console.error(err); // L
 };
 
 module.exports = internalServerError;
+
+/*
+500.js → middleware de error que captura excepciones y responde “Internal Server Error”.
+*/

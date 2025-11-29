@@ -1,4 +1,4 @@
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid'); /*genera ids unicos*/
 const {readCSV, writeCSV} = require('../csv');
 
 const listPersons = () => {
@@ -49,3 +49,36 @@ const deletePerson = (id) => {
 }
 
 module.exports = { listPersons, getPerson, createPerson, updatePerson, deletePerson };
+
+
+/*
+
+@esto es express?
+
+Lógica de negocio + acceso a datos (CSV)
+Aquí está la lógica de CRUD sobre los CSV, usando uuid para generar IDs.
+
+Todos usan readCSV y writeCSV de csv.js:
+
+-listPersons → readCSV("persons")
+
+-getPerson(id) → readCSV("persons").find(p => p.id === id)
+
+-createPerson(attrs):
+ -lee todo
+ -crea objeto con id: uuidv4(), ...attrs
+ -hace push
+ -reescribe el CSV
+
+-updatePerson(id, attrs):
+ -findIndex
+ -mezcla datos antiguos y nuevos con el operador spread:
+  persons[index] = { ...persons[index], ...attrs }
+
+-deletePerson(id):
+ -filtra la lista excluyendo ese id y la reescribe.
+
+classroomModel es parecido, con la particularidad de que students se guarda como texto "id1;id2;id3" en el CSV
+pero el modelo lo expone como array ["id1","id2","id3"] al resto de la aplicación.
+
+*/

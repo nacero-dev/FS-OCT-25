@@ -43,3 +43,28 @@ module.exports = {
     updatePersonController,
     deletePersonController
 };
+
+/*
+
+@ no entiendo muy bien para que sirve el controller
+
+Controllers – Traducen HTTP ↔ lógica de datos
+En backend/controllers tienes:
+personsController.js
+classroomsController.js
+Cada controller:
+Lee parámetros de la petición:
+req.params (por ejemplo id en /persons/:id)
+req.body (datos enviados en POST/PUT)
+Valida campos obligatorios:
+si falta algo → responde 400 Bad Request
+Llama al modelo correspondiente (personsModel, classroomModel).
+Devuelve la respuesta en JSON (res.status(...).json(...)).
+Ejemplo mental:
+createPersonController:
+Lee name, surname, birthdate, is_teacher de req.body.
+Si falta name o surname o birthdate → 400 con error.
+Si todo está ok → createPerson(req.body).
+Devuelve 201 con la persona creada.
+
+*/

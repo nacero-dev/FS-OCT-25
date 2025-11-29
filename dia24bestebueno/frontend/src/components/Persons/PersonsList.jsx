@@ -49,3 +49,44 @@ const PersonsList = () => {
 };
 
 export default PersonsList;
+
+/*
+1️⃣ PersonsList.jsx
+
+👉 Qué hace:
+Es la “pantalla principal” que lista todas las personas.
+Muestra cada registro con opciones de ver, editar y eliminar.
+
+👉 Cómo funciona:
+
+Al montar el componente (useEffect), ejecuta:
+
+fetch('http://localhost:3000/persons')
+
+
+para obtener los datos desde el backend.
+
+Guarda los datos en el estado con setPersons(data).
+
+Si ocurre un error, lo guarda en setError y lo muestra en pantalla.
+
+Renderiza una lista <ul> con cada persona:
+
+“View” → enlace a /persons/:id
+
+“Edit” → enlace a /persons/create/:id
+
+“Delete” → botón que llama a handleDelete(id).
+
+👉 Eliminar persona (handleDelete):
+
+Envía un fetch con método DELETE a /persons/:id.
+
+Cuando termina, actualiza el estado local filtrando al eliminado:
+
+setPersons(persons.filter(p => p.id !== id))
+
+
+👉 Conclusión:
+PersonsList representa la vista general, conectada directamente con GET y DELETE del backend.
+*/
