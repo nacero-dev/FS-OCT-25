@@ -14,7 +14,12 @@ module.exports = router;
 
 Cada router define el mapa:
 “si llega un GET /persons → llama a listPersonsController”
+Si llega GET /persons/:id → ejecuta getPersonController.
+Si llega POST /persons → ejecuta createPersonController.
 “si llega un DELETE /persons/:id → llama a deletePersonController”
 etc.
+Un router es como una “mini tabla de rutas”.
+
+
 
 */

@@ -1,9 +1,10 @@
+/*   "##" 4. Renderización de cada componente (PersonCreate, PersonDetail, PersonList) - PersonDetail - listar y borrar personas PersonDetail*/
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
     
 
 const PersonDetail = () => {
-    const { id } = useParams();
+    const { id } = useParams(); /*1*/
     const [person, setPerson] = useState(null);
     const [error, setError] = useState(null);
 
@@ -48,6 +49,21 @@ Muestra la información detallada de una persona individual (nombre, apellidos y
 
 Usa useParams() (de React Router) para leer el parámetro :id de la URL.
 Ejemplo: /persons/5a12b... → id = "5a12b...".
+
+1.useParams:
+hook de React Router.
+Sirve para leer los valores de los parámetros dinámicos que vienen en la URL.
+Traducción práctica:
+cuando una ruta en tu aplicación tiene algo como /persons/:id,
+el :id es una variable dentro de la URL, y useParams() te deja leer su valor.
+Ejemplo
+<Route path="/persons/:id" element={<PersonDetail />} />
+Si visitas /persons/123,
+el parámetro dinámico :id vale "123".
+Si visitas /persons/abc,
+el parámetro dinámico :id vale "abc".
+person empieza como null (no tienes datos todavía).
+error para guardar problemas de fetch.
 
 Al montar el componente (useEffect), hace:
 

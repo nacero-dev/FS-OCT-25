@@ -67,4 +67,12 @@ Si falta name o surname o birthdate → 400 con error.
 Si todo está ok → createPerson(req.body).
 Devuelve 201 con la persona creada.
 
+Los controllers en Express
+req → request, la solicitud que llega (incluye headers, body, params, etc.).
+res → response, lo que Express enviará de vuelta al cliente.
+res.status(200).json(persons) → responde con código 200 y el JSON de persons.
+
+
+
+
 */
