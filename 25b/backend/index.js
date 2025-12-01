@@ -1,3 +1,5 @@
+/* "##" ruta de repaso 1. */
+
 const express = require('express');
 const mongoose = require('mongoose')
 const app = express();
@@ -43,3 +45,28 @@ app.use(internalServerError);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+/* index.js → Configuración inicial de MongoDB (Nivel 1 + 2)
+
+1.
+
+Antes:
+index.js solo levantaba Express, sin conexión externa.
+
+Ahora:
+const mongoose = require('mongoose');
+const MONGODB_URI = 'mongodb+srv://.../dia25?appName=Cluster0';
+
+mongoose.connect(MONGODB_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Could not connect to MongoDB', err));
+
+Esto cumple:
+
+Nivel 1: Instala e integra Mongoose.
+
+Nivel 2: Usa la connection string de Atlas (tu clúster remoto).
+Ahora cada vez que ejecutas node index.js, tu app se conecta automáticamente a tu base remota.
+
+
+*/

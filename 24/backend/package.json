@@ -11,11 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0",
+    "express": "^5.2.0",
     "help": "^3.0.2",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
-  }
+  },
+  "type": "commonjs"
 }
