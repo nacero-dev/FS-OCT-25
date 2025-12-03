@@ -1,5 +1,5 @@
-export default function BlogPost({ params }) {
-  const { category, post } = params;
+export default async function BlogPost({ params }) {
+  const { category, post } = await params;
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen font-sans">
