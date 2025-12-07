@@ -1,4 +1,3 @@
-/* ==== Configuración principal del backend ==== */
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -26,25 +25,25 @@ app.use(logger);
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI;
 
-// ==== Conexión a MongoDB Atlas ====
+
 mongoose
   .connect(MONGO_URI)
-  .then(() => console.log('✅ Conectado correctamente a MongoDB Atlas'))
+  .then(() => console.log('Conectado correctamente a MongoDB Atlas'))
   .catch((error) => {
-    console.error('❌ Error al conectar con MongoDB:', error.message);
+    console.error('Error al conectar con MongoDB:', error.message);
     process.exit(1); // Detiene la app si no puede conectar
   });
 
-// ==== Rutas ====
+
 app.use('/', indexRouter);
 app.use('/persons', personsRouter);
 app.use('/classrooms', classroomsRouter);
 
-// ==== Middlewares finales ====
+
 app.use(notFound);
 app.use(internalServerError);
 
-// ==== Inicio del servidor ====
+
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor ejecutándose en el puerto ${PORT}`);
+  console.log(`Servidor ejecutándose en el puerto ${PORT}`);
 });
