@@ -40,7 +40,7 @@ const ClassroomsList = () => {
               {classroom.name} — ID del Profesor: {classroom.teacher_id}
               <a href={`/classrooms/${classroom.id}`}> Ver</a>
               <a href={`/classrooms/create/${classroom.id}`}> Editar</a>
-              <button onClick={() => handleDelete(classroom.id)}>Eliminar</button>
+              <button onClick={() => handleDelete(classroom.id)}>Delete</button>
             </li>
           ))}
         </ul>

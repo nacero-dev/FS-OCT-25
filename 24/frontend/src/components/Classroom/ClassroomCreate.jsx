@@ -5,11 +5,10 @@ const ClassroomCreate = () => {
   const form = useRef();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { VITE_API_URL } = import.meta.env;
 
   useEffect(() => {
     if (id) {
-      fetch(`${VITE_API_URL}/classrooms/${id}`)
+      fetch(`${import.meta.env.VITE_API_URL}/classrooms/${id}`)
         .then((response) => response.json())
         .then((data) => {
           form.current.name.value = data.name;
@@ -19,7 +18,7 @@ const ClassroomCreate = () => {
             : "";
         });
     }
-  }, [VITE_API_URL, id]);
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,8 +32,8 @@ const ClassroomCreate = () => {
     };
 
     let url = id
-      ? `${VITE_API_URL}/classrooms/${id}`
-      : `${VITE_API_URL}/classrooms`;
+      ? `${import.meta.env.VITE_API_URL}/classrooms/${id}`
+      : `${import.meta.env.VITE_API_URL}/classrooms`;
     let method = id ? "PUT" : "POST";
 
     fetch(url, {

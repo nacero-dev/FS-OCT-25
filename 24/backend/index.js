@@ -1,20 +1,26 @@
 /*Entrada principal del servidor*/
 require('dotenv').config(); 
 const express = require('express'); /*Importa la librería Express.*/
-const app = express(); /*Crea la app de servidor de Express.*/
 const cors = require('cors'); /*Activa CORS para permitir que el frontend (otro puerto) llame al servidor.*/
-const PORT = process.env.PORT || 3000;  /*Pone a escuchar el servidor en un puerto (por ejemplo 3000).*/
-
-// Routers
-const indexRouter = require('./routers/indexRouters');
-const personsRouter = require('./routers/personsRouters'); /*Conecta las rutas (/persons).*/
-const classroomsRouter = require('./routers/classroomRouters'); /*Conecta las rutas (/classrooms).*/
+const connectDB = require('./config/db');
 
 /*  Configura middlewares globales.*/
 const logger = require('./middlewares/logs');
 const notFound = require('./middlewares/404');
 const internalServerError = require('./middlewares/500');
 const auth = require('./middlewares/auth');
+
+
+// Routers
+const indexRouter = require('./routers/indexRouters');
+const personsRouter = require('./routers/personsRouters'); /*Conecta las rutas (/persons).*/
+const classroomsRouter = require('./routers/classroomRouters'); /*Conecta las rutas (/classrooms).*/
+
+const app = express(); /*Crea la app de servidor de Express.*/
+const PORT = process.env.PORT || 3000;  /*Pone a escuchar el servidor en un puerto (por ejemplo 3000).*/
+
+// Conexión a Mongo Atlas
+connectDB();
 
 app.use(express.json()); /*Permite que Express entienda JSON en el cuerpo de las peticiones (req.body).*/
 app.use(express.urlencoded({ extended: false })); /*Permite leer datos de formularios*/
