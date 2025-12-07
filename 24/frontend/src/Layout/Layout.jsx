@@ -1,14 +1,19 @@
 /* "##" 3. */
 
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from "react-router-dom";
 
 const Layout = () => {
-    return (
-        <>
-            <Outlet />
-        </>
-    );
-}
+  return (
+    <>
+      <nav style={{ marginBottom: "1em" }}>
+        <Link to="/">Persons</Link> |{" "}
+        <Link to="/classrooms">Classrooms</Link>
+      </nav>
+
+      <Outlet />
+    </>
+  );
+};
 
 export default Layout;
 

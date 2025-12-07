@@ -8,9 +8,11 @@ const PersonCreate = () => {
     const navigate = useNavigate(); /* Hook de React Router para redirigir programáticamente a otra ruta */
     const { id } = useParams(); /* Aquí lees :id de la URL., Si vienes de /persons/create → id es undefined → modo crear., Si vienes de /persons/create/:id → id tiene un valor → modo editar.  */
 
+    const { VITE_API_URL } = import.meta.env;
+
     useEffect(() => {
         if (id) { /* Si hay id:*/
-            fetch(`http://localhost:3000/persons/${id}`) /* Hace GET /persons/{id}.*/
+            fetch(`${VITE_API_URL}/persons/${id}`) /* Hace GET /persons/{id}.*/
                 .then(response => response.json()) /* Cuando recibe la persona, rellena los campos del formulario:*/
                 .then(data => {
                     form.current.name.value = data.name; /* Desde form.current accedes directamente a los inputs */
@@ -19,7 +21,7 @@ const PersonCreate = () => {
                     form.current.isTeacher.checked = data.isTeacher; /* Si tu backend realmente usa is_teacher en CSV/JSON y no isTeacher, esto no funcionará tal cual.*/
                 });
         }
-    }, []);
+    }, [VITE_API_URL]);
 
     const handleSubmit = (e) => {
         e.preventDefault(); /* evita que el form haga submit tradicional (recargar página). */
@@ -31,7 +33,7 @@ const PersonCreate = () => {
             isTeacher: form.current.isTeacher.checked
         };
 
-        let url = id ? `http://localhost:3000/persons/${id}` : 'http://localhost:3000/persons'; /*Decide si hace POST o PUT dependiendo de si hay id:*/
+        let url = id ? `${VITE_API_URL}/persons/${id}` : `${VITE_API_URL}/persons`; /*Decide si hace POST o PUT dependiendo de si hay id:*/
         let method = id ? 'PUT' : 'POST';
 
         fetch(url, {
@@ -59,13 +61,13 @@ const PersonCreate = () => {
 
     return (
         <div>
-            <h2>Create Person</h2>
+            <h2>Crear Persona</h2>
             <form ref={form} onSubmit={handleSubmit}>
-                <input name="name" type="text" placeholder="Name" /><br />
-                <input name="surname" type="text" placeholder="Surname" /><br />
-                <input name="birthdate" type="date" placeholder="Birthdate" /><br />
-                <input name="isTeacher" type="checkbox" /> Is teacher<br />
-                <button type="submit">Create</button>
+                <input name="name" type="text" placeholder="Nombre" /><br />
+                <input name="surname" type="text" placeholder="Apellido" /><br />
+                <input name="birthdate" type="date" placeholder="Fecha de nacimiento" /><br />
+                <input name="isTeacher" type="checkbox" /> Es profesor<br />
+                <button type="submit">Crear</button>
             </form>
         </div>
     );
@@ -78,7 +80,7 @@ export default PersonCreate;
 Qué hace:
 Funciona tanto para crear como para editar una persona, dependiendo de si la URL tiene id o no.
 
-👉 Cómo funciona:
+Cómo funciona:
 
 Usa useParams() para saber si hay un id:
 
@@ -90,7 +92,7 @@ Usa useRef() para acceder directamente a los campos del formulario.
 
 Usa useNavigate() para redirigir de vuelta a la página principal (/) tras guardar.
 
-👉 Flujo principal:
+Flujo principal:
 
 a) Si hay id (editar):
 
@@ -128,11 +130,11 @@ sino al servidor Express que está corriendo en el puerto 3000.
 1.2 ¿Dónde está exactamente Express en tu proyecto?
 
 Express no es un archivo concreto; es una librería de Node.js que tú importas y usas en tu código dentro de la carpeta backend/.
-👉 En otras palabras:
+En otras palabras:
 
 Express vive en tu carpeta backend/node_modules/express/ (una vez instalado con npm install express).
 Pero lo usas tú en tu propio código, normalmente en el archivo principal del servidor:
-📄 backend/index.js
+backend/index.js
 
 
 

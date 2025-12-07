@@ -7,21 +7,21 @@ const listPersonsController = (req, res) => {
 
 const getPersonController = (req, res) => {
     const person = getPerson(req.params.id);
-    if (!person) return res.status(404).json({ error: 'Person not found' });
+    if (!person) return res.status(404).json({ error: 'Persona no encontrada' });
     res.status(200).json(person);
 }
 
 const createPersonController = (req, res) => {
     const { name, surname, is_teacher, birthdate } = req.body;
     if (!name || !surname || !birthdate) {
-        return res.status(400).json({ error: 'Missing fields' });
+        return res.status(400).json({ error: 'Campos faltantes' });
     }
     res.status(201).json(createPerson(req.body));
 }
 
 const updatePersonController = (req, res) => {
     const person = getPerson(req.params.id);
-    if (!person) return res.status(404).json({ error: 'Person not found' });
+    if (!person) return res.status(404).json({ error: 'Persona no encontrada' });
     res.status(201).json(updatePerson(req.params.id, req.body));
 }
 
@@ -29,11 +29,11 @@ const deletePersonController = (req, res) => {
     const person = getPerson(req.params.id);
 
     if (!person) {
-        return res.status(404).json({ error: 'Person not found' });
+        return res.status(404).json({ error: 'Persona no encontrada' });
     }
 
     deletePerson(req.params.id)
-    res.json({ message: 'Person deleted' });
+    res.json({ message: 'Persona borrada' });
 }
 
 module.exports = {

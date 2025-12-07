@@ -8,25 +8,27 @@ const PersonDetail = () => {
     const [person, setPerson] = useState(null);
     const [error, setError] = useState(null);
 
+    const { VITE_API_URL } = import.meta.env;
+
     useEffect(() => {
-        fetch(`http://localhost:3000/persons/${id}`)
+        fetch(`${VITE_API_URL}/persons/${id}`)
             .then(response => response.json())
             .then(data => setPerson(data))
             .catch(error => {
-                console.error('Error fetching persons:', error);
+                console.error('Error al obtener la persona:', error);
                 setError(error);
             });
-    }, []);
+    }, [VITE_API_URL, id]);
 
     if (error) {
-        return <p>Error fetching persons: {error.message}</p>;
+        return <p>Error al obtener la persona:  {error.message}</p>;
     }
 
     return (
         <div>
-            <h2>Person Detail</h2>
+            <h2>Detalle de Persona</h2>
             {!person ? (
-                <p>No person found.</p>
+                <p>No se encontró la persona.</p>
             ) : (
                 <ul>
                     <li>
@@ -40,12 +42,12 @@ const PersonDetail = () => {
 
 export default PersonDetail;
 
-/*2️⃣ PersonDetail.jsx
+/*PersonDetail.jsx
 
-👉 Qué hace:
+Qué hace:
 Muestra la información detallada de una persona individual (nombre, apellidos y fecha de nacimiento).
 
-👉 Cómo funciona:
+Cómo funciona:
 
 Usa useParams() (de React Router) para leer el parámetro :id de la URL.
 Ejemplo: /persons/5a12b... → id = "5a12b...".
@@ -82,5 +84,5 @@ Si no hay datos → “No person found.”
 
 Si existen → nombre + apellido + fecha.
 
-👉 Conclusión:
+Conclusión:
 PersonDetail se conecta al endpoint GET /persons/:id para mostrar una sola persona.*/

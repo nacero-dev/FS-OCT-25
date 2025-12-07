@@ -6,8 +6,10 @@ const PersonsList = () => {
     const [persons, setPersons] = useState([]); /* useState([]) → persons empieza como un array vacío. Aquí se guardará lo que venga del backend (GET /persons). */
     const [error, setError] = useState(null); /* useState(null) → error empieza como null. Si algo falla al pedir datos, guardarás el error aquí. */
 
+    const { VITE_API_URL } = import.meta.env;
+
     const handleDelete = (id) => { /* handleDelete recibe un id de persona. */
-        fetch(`http://localhost:3000/persons/${id}`, { /* Hace una petición DELETE al backend "Método: DELETE" */
+        fetch(`${VITE_API_URL}/persons/${id}`, { /* Hace una petición DELETE al backend "Método: DELETE" */
             method: 'DELETE'
         }).then(() => {
             setPersons(persons.filter(person => person.id !== id)); /*persons.filter(...) devuelve un nuevo array sin la persona borrada*/
@@ -15,32 +17,32 @@ const PersonsList = () => {
     };
 
     useEffect(() => {   /*se ejecuta solo una vez, cuando el componente se monta*/
-        fetch('http://localhost:3000/persons') /*Hace fetch a GET /persons*/
+        fetch(`${VITE_API_URL}/persons`) /*Hace fetch a GET /persons*/
             .then(response => response.json()) /*convierte el JSON en objeto JS/array.*/
             .then(data => setPersons(data)) /*guarda la lista en el estado.*/
             .catch(error => {
-                console.error('Error fetching persons:', error); /*2. Si hay error en fetch o en .json(), se ejecuta el catch: Se hace console.error(...). Se guarda el error en setError(error).*/
+                console.error('Error al obtener las personas:', error); /*2. Si hay error en fetch o en .json(), se ejecuta el catch: Se hace console.error(...). Se guarda el error en setError(error).*/
             });
-    }, []);
+    }, [VITE_API_URL]);
 
     if (error) {
-        return <p>Error fetching persons: {error.message}</p>; /*Si error no es null, cortas la ejecución del componente y renderizas solo este mensaje. Esto evita que el resto del JSX se ejecute.*/
+        return <p>Error al obtener las personas: {error.message}</p>; cd/*Si error no es null, cortas la ejecución del componente y renderizas solo este mensaje. Esto evita que el resto del JSX se ejecute.*/
     }
 
     return (
         <div>
-            <h2>Persons List</h2>
-            <a href="/persons/create">Create Person</a>
+            <h2>Lista de Personas</h2>
+            <a href="/persons/create">Crear Persona</a>
             {persons.length === 0 ? (
-                <p>No persons found.</p>
+                <p>No se encontraron personas</p>
             ) : (
                 <ul>
                     {persons.map(person => (
                         <li key={person.id}>
                             {person.name} {person.surname}
-                            <a href={`/persons/${person.id}`}> View</a>
-                            <a href={`/persons/create/${person.id}`}> Edit</a>
-                            <button onClick={() => handleDelete(person.id)}>Delete</button>
+                            <a href={`/persons/${person.id}`}> Ver</a>
+                            <a href={`/persons/create/${person.id}`}> Editar</a>
+                            <button onClick={() => handleDelete(person.id)}>Eliminar</button>
                         </li>
                     ))}
                 </ul>
@@ -52,13 +54,12 @@ const PersonsList = () => {
 export default PersonsList;
 
 /*
-1️⃣ PersonsList.jsx
-
-👉 Qué hace:
+PersonsList.jsx
+Qué hace:
 Es la “pantalla principal” que lista todas las personas.
 Muestra cada registro con opciones de ver, editar y eliminar.
 
-👉 Cómo funciona:
+Cómo funciona:
 
 Al montar el componente (useEffect), ejecuta:
 
@@ -79,7 +80,7 @@ Renderiza una lista <ul> con cada persona:
 
 “Delete” → botón que llama a handleDelete(id).
 
-👉 Eliminar persona (handleDelete):
+Eliminar persona (handleDelete):
 
 Envía un fetch con método DELETE a /persons/:id.
 
@@ -88,7 +89,7 @@ Cuando termina, actualiza el estado local filtrando al eliminado:
 setPersons(persons.filter(p => p.id !== id))
 
 
-👉 Conclusión:
+Conclusión:
 PersonsList representa la vista general, conectada directamente con GET y DELETE del backend.
 
 

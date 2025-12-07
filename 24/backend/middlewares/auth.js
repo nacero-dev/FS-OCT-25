@@ -1,6 +1,6 @@
 const auth = (req, res, next) => {
     if (req.headers.authorization !== 'Bearer sdkfhgjshdrupywt843yhotgiakenlgjkld') {
-        return res.status(401).json({ error: 'Unauthorized', message: 'Token inválido o ausente' });
+        return res.status(401).json({ error: 'No autorizado', message: 'Token inválido o ausente' });
     }
     next();
 };

@@ -1,9 +1,9 @@
 /*Entrada principal del servidor*/
-
+require('dotenv').config(); 
 const express = require('express'); /*Importa la librería Express.*/
 const app = express(); /*Crea la app de servidor de Express.*/
 const cors = require('cors'); /*Activa CORS para permitir que el frontend (otro puerto) llame al servidor.*/
-const PORT = 3000; /*Pone a escuchar el servidor en un puerto (por ejemplo 3000).*/
+const PORT = process.env.PORT || 3000;  /*Pone a escuchar el servidor en un puerto (por ejemplo 3000).*/
 
 // Routers
 const indexRouter = require('./routers/indexRouters');
@@ -17,6 +17,7 @@ const internalServerError = require('./middlewares/500');
 const auth = require('./middlewares/auth');
 
 app.use(express.json()); /*Permite que Express entienda JSON en el cuerpo de las peticiones (req.body).*/
+app.use(express.urlencoded({ extended: false })); /*Permite leer datos de formularios*/
 app.use(cors());
 app.use(logger);
 
@@ -30,7 +31,7 @@ app.use(notFound);
 app.use(internalServerError);
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`); /*Enciende el servidor, escuchando el puerto 3000.*/
+    console.log(`Servidor ejecutándose en el puerto ${PORT}`); /*Enciende el servidor, escuchando el puerto 3000.*/
 });
 
 /*
