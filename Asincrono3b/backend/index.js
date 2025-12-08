@@ -24,17 +24,18 @@ const allowedOrigins = [
 
 //para solucionar problema que CORS no admite
 app.use(cors({
-  origin: function (origin, callback) {
+  origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log(' Bloqueado por CORS:', origin);
       callback(new Error('No autorizado por CORS'));
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type'],
-  credentials: true
 }));
+
 
 
 app.use(express.json());
