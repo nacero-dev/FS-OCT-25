@@ -1,5 +1,3 @@
-/* "##" ruta de repaso 4. */
-
 const {listPersons} = require('./models/personsCSV'); /*listPersons: una función que lee el archivo persons.csv (de tu modelo antiguo del Día 24) y devuelve todos los registros en forma de arreglo de objetos JavaScript.*/
 const Person = require('./models/personsModel'); /*el modelo Mongoose (definido en personsModel.js), que representa la colección persons dentro de tu base de datos MongoDB.*/
 const mongoose = require('mongoose'); /*la librería que conecta Node.js con MongoDB.*/

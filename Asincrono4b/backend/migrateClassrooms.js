@@ -1,5 +1,3 @@
-/* "##" ruta de repaso 5. */
-
 const { listClassrooms } = require('./models/classroomCSV');
 const Classroom = require('./models/classroomModel');
 const mongoose = require('mongoose');

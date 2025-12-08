@@ -1,5 +1,3 @@
-/* Modelo Mongoose para la colección de personas */
-
 const mongoose = require('mongoose');
 
 const personSchema = new mongoose.Schema({
