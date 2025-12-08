@@ -17,6 +17,26 @@ const auth = require('./middlewares/auth');
 // Inicialización de Express
 const app = express();
 app.use(cors());
+
+const allowedOrigins = [
+  'http://localhost:4173', // frontend local (vite)
+  'https://asincrono3b-frontend.vercel.app' // 👉 cambia este dominio si tu frontend tiene otro nombre en Vercel
+];
+
+//para solucionar problema que CORS no admite
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No autorizado por CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger);
