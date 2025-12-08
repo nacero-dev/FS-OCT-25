@@ -17,24 +17,24 @@ const auth = require('./middlewares/auth');
 // Inicialización de Express
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:4173', // frontend local (vite)
-  'https://asincrono3b-frontend.vercel.app' 
-];
+// const allowedOrigins = [
+//   'http://localhost:4173', // frontend local (vite)
+//   'https://asincrono3b-frontend.vercel.app' 
+// ];
 
 //para solucionar problema que CORS no admite
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.log(' Bloqueado por CORS:', origin);
-      callback(new Error('No autorizado por CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-}));
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if (!origin || allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       console.log(' Bloqueado por CORS:', origin);
+//       callback(new Error('No autorizado por CORS'));
+//     }
+//   },
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type'],
+// }));
 
 
 
