@@ -16,11 +16,10 @@ const auth = require('./middlewares/auth');
 
 // Inicialización de Express
 const app = express();
-app.use(cors());
 
 const allowedOrigins = [
   'http://localhost:4173', // frontend local (vite)
-  'https://asincrono3b-frontend.vercel.app' // 👉 cambia este dominio si tu frontend tiene otro nombre en Vercel
+  'https://asincrono3b-frontend.vercel.app' 
 ];
 
 //para solucionar problema que CORS no admite
@@ -33,6 +32,7 @@ app.use(cors({
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
   credentials: true
 }));
 
