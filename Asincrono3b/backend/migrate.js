@@ -38,11 +38,22 @@ console.log(array);
 /*Solo muestra en consola los datos que va a migrar.
 Es una comprobación visual para asegurarte de que los datos del CSV se están leyendo correctamente.*/
 
-array.forEach(async (personData) => {
+// array.forEach(async (personData) => {
+//     const person = new Person(personData);
+//     await person.save();
+//     console.log(`Saved person: ${person.name} ${person.surname}`);
+// });
+
+try {
+  array.forEach(async (personData) => {
     const person = new Person(personData);
     await person.save();
     console.log(`Saved person: ${person.name} ${person.surname}`);
-});
+  });
+} catch (error) {
+  console.error('Error al migrar personas:', error);
+}
+
 
 /*
 Este es el paso de migración real:

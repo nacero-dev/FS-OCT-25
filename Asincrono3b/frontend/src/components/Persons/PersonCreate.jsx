@@ -30,20 +30,36 @@ const PersonCreate = () => {
             isTeacher: form.current.isTeacher.checked
         };
 
-        let url =  id 
-        ? `${VITE_API_URL}/persons/${id}`
-        : `${VITE_API_URL}/persons`;
-        let method =  id ? 'PUT' : 'POST';
-        
+        let url = id
+            ? `${VITE_API_URL}/persons/${id}`
+            : `${VITE_API_URL}/persons`;
+        let method = id ? 'PUT' : 'POST';
+
+        // fetch(url, {
+        //     method: method,
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(newPerson)
+        // }).then(() => {
+        //     navigate('/');
+        // });
+
         fetch(url, {
             method: method,
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newPerson)
-        }).then(() => {
-            navigate('/');
-        });
+        })
+            .then(() => {
+                navigate('/');
+            })
+            .catch(error => {
+                console.error('Error al guardar la persona:', error);
+                alert('No se pudo guardar la persona');
+            });
+
+
+
     };
 
     return (
@@ -53,7 +69,7 @@ const PersonCreate = () => {
                 <input name="name" type="text" placeholder="Name" /><br />
                 <input name="surname" type="text" placeholder="Surname" /><br />
                 <input name="birthdate" type="date" placeholder="Birthdate" /><br />
-                <input name="isTeacher" type="checkbox"/> Es Profesor<br />
+                <input name="isTeacher" type="checkbox" /> Es Profesor<br />
                 <button type="submit">Crear</button>
             </form>
         </div>

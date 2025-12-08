@@ -9,23 +9,17 @@ mongoose.connect(MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Could not connect to MongoDB', err));
 
-/* Leer los datos del CSV */
-const array = listClassrooms();
-console.log('Migrating classrooms...');
+array = listClassrooms();
+
+console.log('Migrando aulas desde CSV...');
 console.log(array);
 
-/* Guardar en MongoDB Atlas */
-array.forEach(async (classroomData) => {
-  try {
-    const classroom = new Classroom({
-      name: classroomData.name,
-      teacher_id: classroomData.teacher_id || null,
-      students: classroomData.students || [],
-    });
-
+try {
+  array.forEach(async (classroomData) => {
+    const classroom = new Classroom(classroomData);
     await classroom.save();
     console.log(`Saved classroom: ${classroom.name}`);
-  } catch (error) {
-    console.error('Error saving classroom:', error.message);
-  }
-});
+  });
+} catch (error) {
+  console.error('Error al migrar aulas:', error);
+}

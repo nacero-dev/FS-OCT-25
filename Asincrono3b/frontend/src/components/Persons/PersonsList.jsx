@@ -22,14 +22,30 @@ const PersonsList = () => {
     }
   };
 
+  // useEffect(() => {
+  //   fetch(`${VITE_API_URL}/persons`)
+  //     .then((response) => response.json())
+  //     .then((data) => setPersons(data))
+  //     .catch((error) => {
+  //       console.error("Error fetching persons:", error);
+  //       setError(error);
+  //     });
+  // }, [VITE_API_URL]);
+
   useEffect(() => {
-    fetch(`${VITE_API_URL}/persons`)
-      .then((response) => response.json())
-      .then((data) => setPersons(data))
-      .catch((error) => {
+    const fetchPersons = async () => {
+      try {
+        const response = await fetch(`${VITE_API_URL}/persons`);
+        if (!response.ok) throw new Error("Error al obtener las personas");
+        const data = await response.json();
+        setPersons(data);
+      } catch (error) {
         console.error("Error fetching persons:", error);
         setError(error);
-      });
+      }
+    };
+
+    fetchPersons();
   }, [VITE_API_URL]);
 
   if (error) return <p>Error al obtener las personas: {error.message}</p>;

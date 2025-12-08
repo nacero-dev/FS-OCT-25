@@ -7,7 +7,7 @@ const ClassroomCreate = () => {
   const { id } = useParams();
   const { VITE_API_URL } = import.meta.env;
 
-  
+
   useEffect(() => {
     if (id) {
       fetch(`${import.meta.env.VITE_API_URL}/classrooms/${id}`)
@@ -40,13 +40,17 @@ const ClassroomCreate = () => {
 
     fetch(url, {
       method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newClassroom),
-    }).then(() => {
-      navigate("/classrooms");
-    });
+    })
+      .then(() => {
+        navigate('/classrooms');
+      })
+      .catch(error => {
+        console.error('Error al guardar el aula:', error);
+        alert('No se pudo guardar el aula');
+      });
+
   };
 
   return (

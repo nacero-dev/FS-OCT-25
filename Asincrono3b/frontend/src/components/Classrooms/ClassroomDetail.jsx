@@ -7,14 +7,30 @@ const ClassroomDetail = () => {
   const [error, setError] = useState(null);
   const { VITE_API_URL } = import.meta.env;
 
+  // useEffect(() => {
+  //   fetch(`${VITE_API_URL}/classrooms/${id}`)
+  //     .then((response) => response.json())
+  //     .then((data) => setClassroom(data))
+  //     .catch((error) => {
+  //       console.error("Error al obtener el aula:", error);
+  //       setError(error);
+  //     });
+  // }, [VITE_API_URL, id]);
+
   useEffect(() => {
-    fetch(`${VITE_API_URL}/classrooms/${id}`)
-      .then((response) => response.json())
-      .then((data) => setClassroom(data))
-      .catch((error) => {
+    const fetchClassroom = async () => {
+      try {
+        const response = await fetch(`${VITE_API_URL}/classrooms/${id}`);
+        if (!response.ok) throw new Error("Error al obtener el aula");
+        const data = await response.json();
+        setClassroom(data);
+      } catch (error) {
         console.error("Error al obtener el aula:", error);
         setError(error);
-      });
+      }
+    };
+
+    fetchClassroom();
   }, [VITE_API_URL, id]);
 
   if (error) {
