@@ -7,15 +7,6 @@ const ClassroomDetail = () => {
   const [error, setError] = useState(null);
   const { VITE_API_URL } = import.meta.env;
 
-  // useEffect(() => {
-  //   fetch(`${VITE_API_URL}/classrooms/${id}`)
-  //     .then((response) => response.json())
-  //     .then((data) => setClassroom(data))
-  //     .catch((error) => {
-  //       console.error("Error al obtener el aula:", error);
-  //       setError(error);
-  //     });
-  // }, [VITE_API_URL, id]);
 
   useEffect(() => {
     const fetchClassroom = async () => {

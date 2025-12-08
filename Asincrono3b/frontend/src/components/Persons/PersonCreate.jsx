@@ -35,16 +35,7 @@ const PersonCreate = () => {
             : `${VITE_API_URL}/persons`;
         let method = id ? 'PUT' : 'POST';
 
-        // fetch(url, {
-        //     method: method,
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(newPerson)
-        // }).then(() => {
-        //     navigate('/');
-        // });
-
+        
         fetch(url, {
             method: method,
             headers: { 'Content-Type': 'application/json' },

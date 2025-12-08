@@ -22,16 +22,6 @@ const PersonsList = () => {
     }
   };
 
-  // useEffect(() => {
-  //   fetch(`${VITE_API_URL}/persons`)
-  //     .then((response) => response.json())
-  //     .then((data) => setPersons(data))
-  //     .catch((error) => {
-  //       console.error("Error fetching persons:", error);
-  //       setError(error);
-  //     });
-  // }, [VITE_API_URL]);
-
   useEffect(() => {
     const fetchPersons = async () => {
       try {

@@ -25,15 +25,6 @@ const ClassroomsList = () => {
     }
   };
 
-  // useEffect(() => {
-  //   fetch(`${VITE_API_URL}/classrooms`)
-  //     .then((response) => response.json())
-  //     .then((data) => setClassrooms(data))
-  //     .catch((error) => {
-  //       console.error("Error al obtener las aulas:", error);
-  //       setError(error);
-  //     });
-  // }, [VITE_API_URL]);
 
   useEffect(() => {
     fetch(`${VITE_API_URL}/classrooms`)
