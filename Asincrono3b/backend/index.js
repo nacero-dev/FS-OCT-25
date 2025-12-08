@@ -16,6 +16,20 @@ const auth = require('./middlewares/auth');
 
 // Inicialización de Express
 const app = express();
+
+// Configuración de CORS para frontend local y de Vercel
+const allowedOrigins = [
+  'http://localhost:5173',                  // desarrollo local (Vite)
+  'http://localhost:4173',                  // modo preview local
+  'https://asincrono3b-frontend.vercel.app' // producción en Vercel
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(logger);
