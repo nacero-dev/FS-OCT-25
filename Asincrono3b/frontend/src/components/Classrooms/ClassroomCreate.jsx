@@ -7,6 +7,7 @@ const ClassroomCreate = () => {
   const { id } = useParams();
   const { VITE_API_URL } = import.meta.env;
 
+  
   useEffect(() => {
     if (id) {
       fetch(`${import.meta.env.VITE_API_URL}/classrooms/${id}`)
