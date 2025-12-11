@@ -1,0 +1,6 @@
+{
+  "app": {
+    "port": 3000,
+    "message": "Servidor en desarrollo usando librería config"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "app": {
+    "name": "MiAplicacion",
+    "port": 3000,
+    "message": "Configuración base desde default.json"
+  }
+}
