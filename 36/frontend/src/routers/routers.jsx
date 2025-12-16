@@ -4,13 +4,14 @@ import Home from '../components/Home.jsx';
 import Register from '../components/Register.jsx';
 import Login from '../components/Login.jsx';
 import Dashboard from '../components/Dashboard.jsx';
+import UserProvider from '../context/UserProvider.jsx';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: <UserProvider><Layout /></UserProvider>,
     children: [
-      { index: true, element: <Home /> },
+      { path: '/', element: <Home /> },
       { path: 'register', element: <Register /> },
       { path: 'login', element: <Login /> },
       { path: 'dashboard', element: <Dashboard /> },

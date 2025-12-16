@@ -1,37 +1,10 @@
-import { useEffect, useState } from 'react';
 import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { useEffect, useContext } from 'react';
+import { UserContext } from '../context/UserContext.jsx';
 
 const Layout = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    if (!token) return;
-
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/users/me`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          localStorage.removeItem('token');
-          return null;
-        }
-        return res.json();
-      })
-      .then((data) => {
-        if (data) {
-          setUser(data); 
-        }
-      })
-      .catch(() => {
-        localStorage.removeItem('token');
-      });
-  }, []);
+  const { user, logout } = useContext(UserContext);
 
   return (
     <>
@@ -50,10 +23,9 @@ const Layout = () => {
                 <li><Link to="/dashboard">Dashboard</Link></li>
                 <li>
                   <button
-                    className="button_a"
+                    className="button-a"
                     onClick={() => {
-                      localStorage.removeItem('token');
-                      setUser(null);
+                      logout();
                       navigate('/login');
                     }}
                   >
