@@ -121,8 +121,6 @@ export default function AdminUsers() {
                   />
                 </td>
                 <td>
-                  {/* Por simplicidad, solo gestionamos admin y borrar.
-                      Si quieres editar email/contraseña, luego hacemos un formulario aparte */}
                   <button onClick={() => handleDelete(u._id)}>Borrar</button>
                 </td>
               </tr>
