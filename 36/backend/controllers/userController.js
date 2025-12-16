@@ -3,20 +3,23 @@ const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
 
 const register = async (req, res) => {
-    const { username, password } = req.body;
+    console.log(1);
+    const { username, email, password } = req.body;
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-
+        console.log(2);
         const newUser = new User({
             username,
+            email,
             password: hashedPassword
         });
-
+        console.log(3);
         await newUser.save();
+        console.log(4);
         res.status(201).json({ message: 'User registered successfully' });
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: `Internal server error: ${error}` });
     }
 };
 
