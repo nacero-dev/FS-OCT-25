@@ -48,7 +48,22 @@ const login = async (req, res) => {
     }
 };
 
+const me = async (req, res) => {
+  try {
+    res.json({
+      _id: req.user._id,
+      username: req.user.username,
+      email: req.user.email,
+      admin: req.user.admin,
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
 module.exports = {
     register,
-    login
+    login, 
+    me,
 };
