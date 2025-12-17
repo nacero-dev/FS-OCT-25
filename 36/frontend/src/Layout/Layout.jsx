@@ -4,7 +4,11 @@ import { UserContext } from '../context/UserContext.jsx';
 
 const Layout = () => {
   const navigate = useNavigate();
-  const { user, logout } = useContext(UserContext);
+  const { user, logout, loading } = useContext(UserContext);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <>
