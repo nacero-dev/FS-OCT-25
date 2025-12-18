@@ -1,29 +1,46 @@
 import { useState } from 'react';
-import { request } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     try {
-      await request('/users/register', {
-        method: 'POST',
-        body: JSON.stringify({ username, email, password }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/users/register`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, email, password }),
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error('Registration failed');
+      }
+
       navigate('/login');
-    } catch (err) {
-      alert(err.message);
+    } catch (error) {
+      alert('Error al registrar el usuario');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <main>
+    <main style={{ maxWidth: '400px', margin: '0 auto', padding: '1rem' }}>
       <h1>Register</h1>
+
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Username"
@@ -31,6 +48,7 @@ const Register = () => {
           onChange={e => setUsername(e.target.value)}
           required
         />
+
         <input
           type="email"
           placeholder="Email"
@@ -38,6 +56,7 @@ const Register = () => {
           onChange={e => setEmail(e.target.value)}
           required
         />
+
         <input
           type="password"
           placeholder="Password"
@@ -45,7 +64,10 @@ const Register = () => {
           onChange={e => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Crear cuenta</button>
+
+        <button type="submit" disabled={loading}>
+          {loading ? 'Creando...' : 'Crear cuenta'}
+        </button>
       </form>
     </main>
   );

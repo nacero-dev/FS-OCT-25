@@ -8,7 +8,7 @@ const listPosts = async (req, res) => {
       .sort({ createdAt: -1 })
       .populate('author', 'username email');
 
-    const postIds = posts.map(p => p._id);
+    const postIds = posts.map(post => post._id);
     const comments = await Comment.find({ post: { $in: postIds } })
       .sort({ createdAt: 1 })
       .populate('author', 'username');

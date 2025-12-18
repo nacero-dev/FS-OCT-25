@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { request } from '../services/api';
 import Comment from '../componentes/Comment';
 import { useAuth } from '../context/AuthContext';
 
@@ -11,16 +10,16 @@ const PostDetail = () => {
 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const [newComment, setNewComment] = useState('');
-  const [sending, setSending] = useState(false);
 
   const loadPost = async () => {
-    setLoading(true);
     try {
-      const posts = await request('/posts');
-      const found = posts.find((p) => p._id === id);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts`);
+      const posts = await res.json();
+      const found = posts.find(p => p._id === id);
       setPost(found || null);
+    } catch (err) {
+      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -28,112 +27,82 @@ const PostDetail = () => {
 
   useEffect(() => {
     loadPost();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleCreateComment = async (e) => {
     e.preventDefault();
-    if (!user) return;
+    if (!user || !newComment.trim()) return;
 
-    const text = newComment.trim();
-    if (!text) return;
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/comments/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body: JSON.stringify({ text: newComment }),
+    });
 
-    setSending(true);
-    try {
-      await request(`/comments/${id}`, {
-        method: 'POST',
-        body: JSON.stringify({ text }),
-      });
-      setNewComment('');
-      await loadPost();
-    } catch (err) {
-      alert(err.message);
-    } finally {
-      setSending(false);
-    }
+    setNewComment('');
+    loadPost();
   };
 
-  const isOwner =
-    user && post?.author && user._id === post.author._id;
-
   const handleDeletePost = async () => {
-    const confirmDelete = window.confirm(
-      '¿Seguro que quieres borrar este post?'
-    );
+    const confirmDelete = window.confirm('¿Borrar post?');
     if (!confirmDelete) return;
 
-    try {
-      await request(`/posts/${post._id}`, {
-        method: 'DELETE',
-      });
-      navigate('/');
-    } catch (err) {
-      alert(err.message);
-    }
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/posts/${post._id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+
+    navigate('/');
   };
 
   if (loading) return <p>Cargando...</p>;
   if (!post) return <p>Post no encontrado</p>;
 
+  const isOwner = user && user._id === post.author?._id;
+
   return (
     <main style={{ maxWidth: '800px', margin: '0 auto', padding: '1rem' }}>
       <h1>{post.title}</h1>
 
-      {post.imageBase64 && (
-        <img
-          src={post.imageBase64}
-          alt={post.title}
-          style={{ width: '100%', maxHeight: '400px', objectFit: 'contain' }}
-        />
-      )}
+      <img
+        src={post.imageBase64}
+        alt={post.title}
+        style={{ width: '100%', maxHeight: '400px', objectFit: 'contain' }}
+      />
 
       <p>{post.content}</p>
       <small>Autor: {post.author?.username}</small>
 
       {isOwner && (
-        <div>
-          <button onClick={handleDeletePost}>
-            Borrar post
-          </button>
-        </div>
+        <button onClick={handleDeletePost}>Borrar post</button>
       )}
 
       <hr />
 
       <h2>Comentarios</h2>
 
-      {post.comments?.length ? (
-        post.comments.map((comment) => (
-          <Comment
-            key={comment._id}
-            comment={comment}
-            onRefresh={loadPost}
-          />
-        ))
-      ) : (
-        <p>No hay comentarios todavía.</p>
-      )}
+      {post.comments.map(c => (
+        <Comment key={c._id} comment={c} onRefresh={loadPost} />
+      ))}
 
       {user && (
-        <>
-          <h3>Nuevo comentario</h3>
-          <form onSubmit={handleCreateComment}>
-            <input
-              placeholder="Escribe tu comentario..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-              disabled={sending}
-              required
-            />
-            <button type="submit" disabled={sending}>
-              {sending ? 'Enviando...' : 'Enviar'}
-            </button>
-          </form>
-        </>
+        <form onSubmit={handleCreateComment}>
+          <input
+            value={newComment}
+            onChange={e => setNewComment(e.target.value)}
+            placeholder="Nuevo comentario"
+            required
+          />
+          <button>Enviar</button>
+        </form>
       )}
     </main>
   );
 };
 
 export default PostDetail;
-
