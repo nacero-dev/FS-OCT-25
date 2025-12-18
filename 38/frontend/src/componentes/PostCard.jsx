@@ -1,25 +1,26 @@
 import { Link } from 'react-router-dom';
+import './PostCard.css';
 
 const PostCard = ({ post }) => {
   return (
-    <article style={{ border: '1px solid #ccc', padding: '1rem', marginBottom: '1rem' }}>
-      <h2>{post.title}</h2>
+    <article className="post-card">
+      <h2 className="post-card__title">{post.title}</h2>
 
       {post.imageBase64 && (
         <img
           src={post.imageBase64}
           alt={post.title}
-          style={{ width: '100%', maxHeight: '300px', objectFit: 'contain' }}
+          className="post-card__image"
         />
       )}
 
-      <p>{post.content}</p>
+      <p className="post-card__content">{post.content}</p>
 
-      <small>
+      <small className="post-card__author">
         Autor: {post.author?.username || 'Anónimo'}
       </small>
 
-      <div>
+      <div className="post-card__link">
         <Link to={`/posts/${post._id}`}>Ver post</Link>
       </div>
     </article>
