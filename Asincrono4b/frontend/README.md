@@ -1,1 +1,1 @@
-ejecutar con npm run preview
+ejecutar con npm run preview en terminal para renderizar npm run build
