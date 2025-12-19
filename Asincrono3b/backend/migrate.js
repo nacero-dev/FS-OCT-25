@@ -8,7 +8,7 @@ const MONGODB_URI= 'mongodb+srv://nicolasacero2023:Odesa1234@cluster0.jecail7.mo
 
 /* Este es el string de conexión a tu clúster remoto en MongoDB Atlas (el requisito del Nivel 2).*/
 
-mongoose.connect(MONGODB_URI)
+mongoose.connect(MONGODB_URI) 
 
 
 .then(() => console.log('Conectado correctamente a MongoDB Atlas'))

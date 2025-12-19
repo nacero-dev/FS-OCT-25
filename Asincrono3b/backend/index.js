@@ -17,11 +17,10 @@ const auth = require('./middlewares/auth');
 // Inicialización de Express
 const app = express();
 
-// Configuración de CORS para frontend local y de Vercel
+// Configuración de CORS
 const allowedOrigins = [
   'http://localhost:5173',                  // desarrollo local (Vite)
   'http://localhost:4173',                  // modo preview local
-  'https://asincrono3b-frontend.vercel.app' // producción en Vercel
 ];
 
 app.use(cors({

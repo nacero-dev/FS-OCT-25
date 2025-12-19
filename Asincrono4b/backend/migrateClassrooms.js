@@ -3,7 +3,7 @@ const Classroom = require('./models/classroomModel');
 const mongoose = require('mongoose');
 
 /* Conexión al clúster remoto en MongoDB Atlas */
-const MONGODB_URI = 'mongodb+srv://nicolasacero2023:Odesa1234@cluster0.jecail7.mongodb.net/asincrono4?appName=Cluster0';
+const MONGODB_URI = 'mongodb+srv://nicolasacero2023:Odesa1234@cluster0.jecail7.mongodb.net/asincrono4?appName=Cluster0'; /*@*/
 
 mongoose.connect(MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))

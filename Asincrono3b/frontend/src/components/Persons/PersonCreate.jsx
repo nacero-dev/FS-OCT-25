@@ -27,7 +27,7 @@ const PersonCreate = () => {
             name: form.current.name.value,
             surname: form.current.surname.value,
             birthdate: form.current.birthdate.value,
-            isTeacher: form.current.isTeacher.checked
+            is_Teacher: form.current.isTeacher.checked
         };
 
         let url = id
