@@ -19,8 +19,10 @@ const app = express();
 
 // Configuración de CORS
 const allowedOrigins = [
-  'http://localhost:5173',                  // desarrollo local (Vite)
-  'http://localhost:4173',                  // modo preview local
+  'http://localhost:5173', // desarrollo local (Vite)
+  'http://localhost:4173', // modo preview local
+  
+
 ];
 
 app.use(cors({
