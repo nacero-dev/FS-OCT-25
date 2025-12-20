@@ -18,18 +18,7 @@ const auth = require('./middlewares/auth');
 const app = express();
 
 // Configuración de CORS
-const allowedOrigins = [
-  'http://localhost:5173', // desarrollo local (Vite)
-  'http://localhost:4173', // modo preview local
-  
-
-];
-
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
